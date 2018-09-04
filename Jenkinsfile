@@ -12,9 +12,9 @@ node('New_Node'){
        }
 	stage('Deploy') {
 	// Deploy the Artifacts into Tomcat Appserver
-	sh 'mv /root/workspace/Maven_PipeLine_Own_Webproject/target/*.war /opt/apache-tomcat-9.0.10/webapps/'
-	sh 'rm -rf /opt/apache-tomcat-9.0.10/webapps/ROOT/*'	
-	sh 'mv /opt/apache-tomcat-9.0.10/webapps/maven-web-project-1.0-SNAPSHOT/* /opt/apache-tomcat-9.0.10/webapps/ROOT/'
+	sh 'mv /root/workspace/maven-mavenprojectstyle-owncode/target/*.war /opt/apache-tomcat-8.5.33/webapps/'
+	sh 'rm -rf /opt/apache-tomcat-8.5.33/webapps/ROOT/*'	
+	sh 'mv /opt/apache-tomcat-8.5.33/webapps/maven-mavenprojectstyle-owncode/* /opt/apache-tomcat-8.5.33/webapps/ROOT/'
 	emailext body: 'Stage has successfully deploy completed ', subject: 'jenkins Status', to: 'sambasiva1063@gmail.com'
 	}
 	   
