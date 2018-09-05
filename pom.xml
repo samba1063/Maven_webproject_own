@@ -81,14 +81,14 @@
 
 	<distributionManagement>
 	    <repository>
-	      <id>nexus</id>
-	      <name>Mithun Technologies Releases Nexus Repository</name>
-	      <url>http://localhost:9090/mithuntechnologies/repository/maven-releases/</url>
+	      <id>sam</id>
+	      <name>Repositotry for releases</name>
+	      <url>http://13.232.95.50:8081/nexus/content/repositories/sam-releases/</url>
 	    </repository>
 	    <snapshotRepository>
-	      <id>nexus</id>
-	      <name>Mithun Technologies Snapshot Nexus Repository </name>
-	      <url>http://localhost:9090/mithuntechnologies/repository/maven-snapshots</url>
+	      <id>sam</id>
+	      <name>Repositotry for releases</name>
+	      <url>http://13.232.95.50:8081/nexus/content/repositories/sam-snapshots/</url>
 	    </snapshotRepository>
 	</distributionManagement>
 	
