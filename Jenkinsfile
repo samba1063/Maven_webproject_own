@@ -18,5 +18,8 @@ node('Node3'){
 	slackSend 'Deployment Sucess '
 	}
 	   
-       
+       stage('S3bucket storage')
+	{
+		s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'samba-newstorage', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/Build*/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'vicky-maggie', userMetadata: []
+	}
 }
