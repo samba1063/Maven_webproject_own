@@ -6,7 +6,7 @@
   <groupId>com.mt</groupId>
   <artifactId>maven-web-project</artifactId>
   <packaging>war</packaging>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0</version>
   <name>Maven Web Project 22nd April</name>
   <description>Maven Web Project for Java</description>
 
@@ -83,14 +83,14 @@
 	    <repository>
 	      <id>sam</id>
 	      <name>Repositotry for releases</name>
-	      <url>http://13.232.95.50:8081/nexus/content/repositories/sam-releases/</url>
+	      <url>http://13.232.95.50:8081/nexus/content/repositories/sam/</url>
 	    </repository>
 	    <snapshotRepository>
-	      <id>sam</id>
-	      <name>Repositotry for releases</name>
-	      <url>http://13.232.95.50:8081/nexus/content/repositories/sam-snapshots/</url>
-	    </snapshotRepository>
-	</distributionManagement>
+            <id>sam1</id>
+	  <name>Repositotry for releases</name>
+    	   <url>http://13.232.95.50:8081/nexus/content/repositories/sam1</url>
+  	   </snapshotRepository>	
+	   </distributionManagement>
 	
 	
   <build>
