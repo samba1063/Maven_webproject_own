@@ -12,10 +12,11 @@ node('Slave12'){
        }
 	stage('Deploy') {
 	// Deploy the .war file into Tomcat Appserver
-	sh 'mv  /root/workspace/maven-mavenprojectstyle-owncode/target/*.war /root/workspace/build/samba-${env.BUILD_NUMBER}.war'
-	sh 'cp /root/workspace/build/samba-${env.BUILD_NUMBER}.war /opt/apache-tomcat-8.5.33/webapps/'
-	sh 'rm -rf /opt/apache-tomcat-8.5.33/webapps/ROOT/*'	
-	sh 'mv /opt/apache-tomcat-8.5.33/webapps/samba-${env.BUILD_NUMBER}/* /opt/apache-tomcat-8.5.33/webapps/ROOT/'
+	sh "cd $WORKSPACE;/bin/mkdir build-${env.BUILD_NUMBER}"
+	sh "mv  /root/workspace/maven-mavenprojectstyle-owncode/target/*.war /root/workspace/build/samba_${env.BUILD_NUMBER}.war"
+	sh "cp /root/workspace/build/samba_${env.BUILD_NUMBER}.war /opt/apache-tomcat-8.5.33/webapps/"
+	sh "rm -rf /opt/apache-tomcat-8.5.33/webapps/ROOT/*"
+	sh "mv /opt/apache-tomcat-8.5.33/webapps/samba-${env.BUILD_NUMBER}/* /opt/apache-tomcat-8.5.33/webapps/ROOT/"
 	slackSend 'Deployment Sucess '
 	}
 	   
