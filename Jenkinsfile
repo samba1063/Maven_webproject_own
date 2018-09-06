@@ -12,7 +12,7 @@ node('Slave12'){
        }
 	stage('Deploy') {
 	// Deploy the .war file into Tomcat Appserver
-	sh "cd $WORKSPACE;/bin/mkdir build-${env.BUILD_NUMBER}"
+	sh "cd $WORKSPACE;/bin/mkdir build-${env.BUILD_NUMBER}/samba_${env.BUILD_NUMBER}.war"
 	sh "/bin/mv  /root/workspace/maven-mavenprojectstyle-owncode/target/*.war /root/workspace/build-${env.BUILD_NUMBER}/samba_${env.BUILD_NUMBER}.war"
 	sh "/bin/cp /root/workspace/build-${env.BUILD_NUMBER}/samba_${env.BUILD_NUMBER}.war /opt/apache-tomcat-8.5.33/webapps/"
 	sh "/bin/rm -rf /opt/apache-tomcat-8.5.33/webapps/ROOT/*"
