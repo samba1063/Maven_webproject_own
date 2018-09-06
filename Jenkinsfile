@@ -1,4 +1,4 @@
-#!groovy
+#!/bin/bash/env groovy
 
 node('Slave12'){
 	stage('Checkout'){
