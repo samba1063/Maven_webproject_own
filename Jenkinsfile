@@ -10,7 +10,7 @@ node('Slave12'){
           sh 'mvn clean package'
 	  slackSend 'Build Sucess '
        }
-	stage('Deploy the artifacts') {
+	stage('Deploy') {
 	// Deploy the .war file into Tomcat Appserver
 	sh 'mv /root/workspace/maven-mavenprojectstyle-owncode/target/*.war /opt/apache-tomcat-8.5.33/webapps/'
 	sh 'rm -rf /opt/apache-tomcat-8.5.33/webapps/ROOT/*'	
