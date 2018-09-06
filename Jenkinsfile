@@ -13,16 +13,16 @@ node('Slave12'){
 	stage('Deploy') {
 	// Deploy the .war file into Tomcat Appserver
 	sh "cd $WORKSPACE;/bin/mkdir build-${env.BUILD_NUMBER}"
-	sh "mv  /root/workspace/maven-mavenprojectstyle-owncode/target/*.war /root/workspace/build/samba_${env.BUILD_NUMBER}.war"
-	sh "cp /root/workspace/build/samba_${env.BUILD_NUMBER}.war /opt/apache-tomcat-8.5.33/webapps/"
+	sh "mv  /root/workspace/maven-mavenprojectstyle-owncode/target/*.war /root/workspace/build-${env.BUILD_NUMBER}/samba_${env.BUILD_NUMBER}.war"
+	sh "cp /root/workspace/build-${env.BUILD_NUMBER}/samba_${env.BUILD_NUMBER}.war /opt/apache-tomcat-8.5.33/webapps/"
 	sh "rm -rf /opt/apache-tomcat-8.5.33/webapps/ROOT/*"
-	sh "mv /opt/apache-tomcat-8.5.33/webapps/samba-${env.BUILD_NUMBER}/* /opt/apache-tomcat-8.5.33/webapps/ROOT/"
+	sh "mv /opt/apache-tomcat-8.5.33/webapps/samba_${env.BUILD_NUMBER}/* /opt/apache-tomcat-8.5.33/webapps/ROOT/"
 	slackSend 'Deployment Sucess '
 	}
 	   
        stage('S3bucket storage')
 	{
-	  s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'samba-newstorage', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/build/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'vicky_maggie', userMetadata: []
+	  s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'samba-newstorage', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'ap-south-1', showDirectlyInBrowser: false, sourceFile: '**/build*/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'vicky_maggie', userMetadata: []
 			
 
 	}
