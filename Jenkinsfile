@@ -7,7 +7,7 @@ node('Slave12'){
 
        stage('BuildArtifact'){
           // build step
-          sh 'mvn clean package deploy'
+          sh 'mvn clean package'
 	  slackSend 'Build Sucess '
        }
 	stage('Deploy the artifacts') {
