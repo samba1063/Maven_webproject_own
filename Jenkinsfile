@@ -8,7 +8,7 @@ node('node1'){
        stage('BuildArtifact'){
           // build step
           sh 'mvn clean package'
-	  //slackSend 'Build Sucess '
+	  slackSend 'Build-${env.BUILD_NUMBER} Sucess '
        }
 	stage('Deploy') {
 	// Deploy the .war file into Tomcat Appserver
@@ -17,13 +17,13 @@ node('node1'){
 	sh "/bin/cp $WORKSPACE/build-${env.BUILD_NUMBER}/samba_${env.BUILD_NUMBER}.war /opt/apache-tomcat-8.5.34/webapps/samba.war"
 	sh "/bin/rm -rf /opt/apache-tomcat-8.5.34/webapps/ROOT/*"
 	sh "/bin/mv /opt/apache-tomcat-8.5.34/webapps/samba/* /opt/apache-tomcat-8.5.34/webapps/ROOT/"
-	//slackSend 'Deployment Sucess '
+	slackSend 'Deployment-${env.BUILD_NUMBER} Sucess'
 	}
 	   
        stage('S3bucket storage')
 	{
 	  s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'iphonestorage24', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: '**build**/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'samba_iphone', userMetadata: []
-			
+		slackSend 'Deployment-${env.BUILD_NUMBER} Sucess'	
 
 	}
 }
