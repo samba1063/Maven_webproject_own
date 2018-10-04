@@ -8,7 +8,7 @@ node('node1'){
        stage('BuildArtifact'){
           // build step
           sh 'mvn clean package'
-	  slackSend 'Build-${env.BUILD_NUMBER} Sucess '
+	  slackSend 'build-${BUILD_NUMBER} Sucess '
        }
 	stage('Deploy') {
 	// Deploy the .war file into Tomcat Appserver
@@ -23,7 +23,7 @@ node('node1'){
        stage('S3bucket storage')
 	{
 	  s3Upload consoleLogLevel: 'INFO', dontWaitForConcurrentBuildCompletion: false, entries: [[bucket: 'iphonestorage24', excludedFile: '', flatten: false, gzipFiles: false, keepForever: false, managedArtifacts: false, noUploadOnFailure: false, selectedRegion: 'us-east-1', showDirectlyInBrowser: false, sourceFile: '**build**/*.war', storageClass: 'STANDARD', uploadFromSlave: false, useServerSideEncryption: false]], pluginFailureResultConstraint: 'FAILURE', profileName: 'samba_iphone', userMetadata: []
-		slackSend 'Deployment-${env.BUILD_NUMBER} Sucess'	
+		slackSend 'Uploaded ${env.BUILD_NUMBER} Sucess'	
 
 	}
 }
